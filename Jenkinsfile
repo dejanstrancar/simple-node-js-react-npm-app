@@ -1,11 +1,11 @@
 pipeline {
     agent any
     stages {
-        // stage('Build') { 
-        //     steps {
-        //         sh 'npm install' 
-        //     }
-        // }
+        stage('Build') { 
+            steps {
+                sh 'npm install' 
+            }
+        }
         // stage('Test') {
         //     steps {
         //         sh './jenkins/scripts/test.sh'
@@ -18,11 +18,13 @@ pipeline {
         //         sh './jenkins/scripts/kill.sh'
         //     }
         // }
+        stage('Build') { 
+            steps {
+                sh './jenkins/scripts/build.sh'
+            }
+        }
         stage('Deploy') { 
             steps {
-                script {
-                    checkout scm
-                }
                 sh './jenkins/scripts/deploy.sh'
             }
         }
