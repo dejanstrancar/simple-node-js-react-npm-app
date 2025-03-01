@@ -1,5 +1,13 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:lts-buster-slim'
+            args '-p 3000:3000'
+        }
+    }
+    environment {
+        CI = 'true'
+    }
     stages {
         stage('Install') { 
             steps {
@@ -8,12 +16,12 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                sh './jenkins/scripts/build.sh'
+                sh './scripts/build.sh'
             }
         }
         stage('Deploy') { 
             steps {
-                sh './jenkins/scripts/deploy.sh'
+                sh './scripts/deploy.sh'
             }
         }
     }
