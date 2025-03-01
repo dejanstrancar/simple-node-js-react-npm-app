@@ -20,6 +20,9 @@ pipeline {
         // }
         stage('Deploy') { 
             steps {
+                script {
+                    checkout scm
+                }
                 sh './jenkins/scripts/deploy.sh'
             }
         }
