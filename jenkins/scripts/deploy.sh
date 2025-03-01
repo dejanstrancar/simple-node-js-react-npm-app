@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 set -x
-export PATH="$HOME/.npm-global/bin:$PATH"
+cat ~/.config/configstore/caprover.json
 caprover ls
 caprover deploy -n atena -b master -a simple-node-js-react-npm-app
 set +x
